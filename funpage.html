@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Noah's Fun Page - Vue.js</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: linear-gradient(135deg, #00c6ff, #0072ff);
+        color: white;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      button {
+        background: white;
+        color: #0072ff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        margin-top: 20px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      button:hover {
+        background: #f0f0f0;
+        transform: scale(1.1);
+      }
+      p {
+        font-size: 1.2rem;
+        margin-top: 20px;
+        font-style: italic;
+      }
+      a {
+        color: white;
+        margin-top: 30px;
+        text-decoration: underline;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ title }}</h1>
+      <p>"{{ currentQuote }}"</p>
+      <button @click="getRandomQuote">✨ New Quote</button>
+      <a href="index.html">⬅ Back to Home</a>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+
+      createApp({
+        data() {
+          return {
+            title: "Noah’s Motivational Quote Generator 💡",
+            quotes: [
+              "Believe you can and you're halfway there.",
+              "Dream big. Start small. Act now.",
+              "The best time to plant a tree was 20 years ago. The second best time is now.",
+              "Push yourself, because no one else is going to do it for you.",
+              "Every day is a new beginning. Take a deep breath and start again.",
+            ],
+            currentQuote: "",
+          };
+        },
+        mounted() {
+          this.getRandomQuote();
+        },
+        methods: {
+          getRandomQuote() {
+            const index = Math.floor(Math.random() * this.quotes.length);
+            this.currentQuote = this.quotes[index];
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
